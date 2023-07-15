@@ -23,20 +23,17 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
 private:
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, Category = "Components")
 		class UCapsuleComponent* CapsuleComp;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, Category = "Components")
 		UStaticMeshComponent* BaseMesh;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, Category = "Components")
 		UStaticMeshComponent* TurretMesh;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, Category = "Components")
 		class USceneComponent* ProjectileSpawnPoint;
 
 

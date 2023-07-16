@@ -15,26 +15,25 @@ public:
 	// Sets default values for this pawn's properties
 	ABasePawn();
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	void HandleDestruction();
 
 private:
-	UPROPERTY(EditAnywhere, Category = "Components")
+	//Component variables
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
 		class UCapsuleComponent* CapsuleComp;
-
-	UPROPERTY(EditAnywhere, Category = "Components")
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
 		UStaticMeshComponent* BaseMesh;
-
-	UPROPERTY(EditAnywhere, Category = "Components")
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
 		UStaticMeshComponent* TurretMesh;
-
-	UPROPERTY(EditAnywhere, Category = "Components")
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
 		class USceneComponent* ProjectileSpawnPoint;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Combat")
+	TSubclassOf<class AProjectile> ProjectileClass;
+
+protected:
+	//Combat functions
+	void RotateTurret(FVector LookAtTarget);
+	void Fire();
 
 };

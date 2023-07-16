@@ -16,17 +16,32 @@ class TOONTANKS_API ATank : public ABasePawn
 	GENERATED_BODY()
 	
 public:
+
 	ATank();
 
+	//Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-private:
-	UPROPERTY(EditAnywhere, Category = "Components")
-		class USpringArmComponent* SpringArm;
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(EditAnywhere, Category = "Components")
+	void HandleDestruction();
+
+	APlayerController* GetTankPlayerController() const { return TankPlayerController; }
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
+private:
+
+	//Components
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
+		class USpringArmComponent* SpringArm;
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
 		class UCameraComponent* TankCamera;
 
+	//InputMapping
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input", meta = (AllowPrivateAccess = "true"))
 		class UInputMappingContext* inputMapping;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input", meta = (AllowPrivateAccess = "true"))
@@ -38,5 +53,17 @@ private:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input", meta = (AllowPrivateAccess = "true"))
 		class UInputAction* inputFire;
 
+	//Movement Variables
+	UPROPERTY(EditAnywhere, Category = "Movement")
+		float MoveSpeed = 500;
+	UPROPERTY(EditAnywhere, Category = "Movement")
+		float TurnSpeed = 200;
+
+	//PlayerController Variable
+
+	APlayerController* TankPlayerController;
+
+	//Movement Functions
 	void Move(const FInputActionValue& Value);
+	void Turn(const FInputActionValue& Value);
 };

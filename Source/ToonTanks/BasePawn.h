@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "Camera/CameraShakeBase.h"
+#include "LegacyCameraShake.h"
 #include "BasePawn.generated.h"
 
 UCLASS()
@@ -30,6 +32,15 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
 	TSubclassOf<class AProjectile> ProjectileClass;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Combat")
+		UParticleSystem* DeathEffect;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+		class USoundBase* DeathSound;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+		class TSubclassOf<UCameraShakeBase> DeathShakeClass;
 
 protected:
 	//Combat functions

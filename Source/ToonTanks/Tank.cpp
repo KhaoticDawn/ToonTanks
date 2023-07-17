@@ -39,9 +39,9 @@ void ATank::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	//Rotate Turret based on mouse location
-	FHitResult HitResult;
-	TankPlayerController->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility,false,HitResult);
-	RotateTurret(HitResult.ImpactPoint);
+		FHitResult HitResult;
+		TankPlayerController->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, HitResult);
+		RotateTurret(HitResult.ImpactPoint);
 }
 
 void ATank::HandleDestruction()
@@ -49,6 +49,7 @@ void ATank::HandleDestruction()
 	Super::HandleDestruction();
 	SetActorHiddenInGame(true);
 	SetActorTickEnabled(false);
+	bTankAlive = false;
 }
 
 void ATank::BeginPlay()

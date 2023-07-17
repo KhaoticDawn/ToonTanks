@@ -25,6 +25,8 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	bool bTankAlive = true;
+
 	void HandleDestruction();
 
 	APlayerController* GetTankPlayerController() const { return TankPlayerController; }
